@@ -1,0 +1,15 @@
+---
+- hosts: server2.abc.com
+  remote_user: test
+  become: yes
+  tasks:
+    - name: Install nginx
+      yum: name=nginx state=installed
+    - name: copy index.html
+      copy: src=index.html dest=/usr/share/nginx/html
+      notify: restart nginx
+    - name: start the service
+      service: name=nginx state=started
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=restarted
