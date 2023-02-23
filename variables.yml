@@ -1,0 +1,19 @@
+---
+- hosts: '{{host}}' 
+  #remote_user: test
+  become: yes
+  vars:
+   pkg: httpd
+  vars_files:
+    - abc.yml
+  vars_prompt:
+    - name: pkg2
+      prompt: enter package name
+      private: no
+  tasks:
+    - name: Install {{pkg}} 
+      yum: name={{pkg}} state=installed
+    - name: install {{pkg1}}
+      yum: name={{pkg1}} state=installed 
+    - name: insrtall {{pkg2}}
+      yum: name={{pkg2}} state=installed
