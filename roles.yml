@@ -1,0 +1,7 @@
+---
+- hosts: server2.abc.com
+  remote_user: test
+  become: yes
+  roles:
+    - nginx-proxy 
+    - geerlingguy.git

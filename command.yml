@@ -1,0 +1,15 @@
+---
+- hosts: server2.abc.com
+  remote_user: test
+  become: yes
+  tasks:
+    - name: Install nginx
+      command: yum install nginx -y
+    - name: copy index.html
+      shell: echo "hello" > /usr/share/nginx/html/index.html
+    - name: start the service
+      raw: systemctl start nginx
+      delegate_to: localhost
+    - name: execute script
+      script: ./xyz.sh
+

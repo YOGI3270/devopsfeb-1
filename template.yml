@@ -1,0 +1,8 @@
+---
+- hosts: server2.abc.com
+  remote_user: test
+  become: yes
+  tasks:
+    - name: copy index.html
+      template: src=abc.j2 dest=/etc/abc
+

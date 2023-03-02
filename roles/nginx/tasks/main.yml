@@ -1,0 +1,10 @@
+---
+# tasks file for nginx
+- name: Install nginx
+  yum: name={{pkg}} state=installed
+- name: copy index.html
+  copy: src=index.html dest=/usr/share/nginx/html
+  notify: restart nginx
+- name: start the service
+  service: name=nginx state=started
+
